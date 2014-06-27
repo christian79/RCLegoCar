@@ -16,12 +16,10 @@ long RXTXinterval = 20;
 
 
 void setup()
-  {
-    lcd.begin(16, 2);
-    lcd.clear();
-    Serial.begin(19200);
-  // put your setup code here, to run once:
-
+{
+  lcd.begin(16, 2);
+  lcd.clear();
+  Serial.begin(19200);
 }
 
 byte getDistance()
@@ -32,6 +30,7 @@ byte getDistance()
     return cm;
   }
 }
+
 void printForward()
 {
   valX = constrain(valX, 3, 255);
@@ -47,7 +46,6 @@ void printForward()
   lcd.print(valX);
   lcd.print(",");
   lcd.print(valY);
-  //delay(20);
 }
 
 void printBackward()
@@ -65,7 +63,6 @@ void printBackward()
   lcd.print(valX1);
   lcd.print(",");
   lcd.print(valY);
-  //delay(20);
 }
 
 void printStop()
@@ -77,7 +74,6 @@ void printStop()
   lcd.print("s");
   lcd.print(",");
   lcd.print(valY);
-  //delay(20);
 }
 
 void  LCDrefresh()
@@ -89,17 +85,15 @@ void  LCDrefresh()
       lcd.clear();
     }
 }
-    
-  
-  
+
 void loop()
-  {
-    valX = map(analogRead(analogPinX), 530, 1023, 0, 255);
-    valX1 = map(analogRead(analogPinX), 516, 0, 0, 255);
-    valY = map(analogRead(analogPinY), 0 ,1023, 0, 179);
-    unsigned long currentRXTXMillis = millis();
+{
+  valX = map(analogRead(analogPinX), 530, 1023, 0, 255);
+  valX1 = map(analogRead(analogPinX), 516, 0, 0, 255);
+  valY = map(analogRead(analogPinY), 0 ,1023, 0, 179);
+  unsigned long currentRXTXMillis = millis();
   
-  if (currentRXTXMillis - previousRXTXMillis > RXTXinterval)
+ if (currentRXTXMillis - previousRXTXMillis > RXTXinterval)
   {
     previousRXTXMillis = currentRXTXMillis;
     if (valX > 3)
